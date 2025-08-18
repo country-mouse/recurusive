@@ -1,22 +1,22 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
-int gcd(int x, int y)
+void recur(int n)
 {
-	if (y == 0)
-		return x;
-	else
-		return gcd(y, x % y);
+	if (n > 0)
+	{
+		recur(n - 1);
+		printf("%d\n", n);
+		recur(n - 2);
+	}
 }
 
 int main(void)
 {
-	int x, y;
-	printf("enter int a: ");
+	int x;
+	printf("enter number: ");
 	scanf("%d", &x);
-	printf("enter int b: ");
-	scanf("%d", &y);
-	printf("%d", gcd(x, y));
+	recur(x);
 
 	return 0;
 }
