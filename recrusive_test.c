@@ -1,33 +1,21 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
-static char memo[128][1024];
-
-void recur(int n)
+void move(int no, int x, int y)
 {
-	if (memo[n + 1][0] != '\0')
-		printf("%s", memo[n + 1]);
-	else
-	{
-		if (n > 0)
-		{
-			recur(n - 1);
-			printf("%d\n", n);
-			recur(n - 2);
-			sprintf(memo[n + 1], "%s%d\n%s", memo[n], n, memo[n - 1]);
-		}
-		else
-			strcpy(memo[n + 1], "");
-	}
+	if (no > 1)
+		move(no - 1, x, 6 - x - y);
+	printf("¿ø¹Ý[%d]À» %d±âµÕ¿¡¼­ %d ±âµÕÀ¸·Î ¿Å±è\n", no, x, y);
+	if (no > 1)
+		move(no - 1, 6 - x - y, y);
 }
 
 int main(void)
 {
-	int x;
-	printf("enter any number: ");
-	scanf("%d", &x);
-
-	recur(x);
+	int n;
+	printf("number of rings' tower: ");
+	scanf("%d", &n);
+	move(n, 1, 3);
 
 	return 0;
 }
